@@ -1,0 +1,89 @@
+# ==========================
+# Project Metadata
+# ==========================
+[project]
+name = "production-grade-agentic-system"
+version = "0.1.0"
+description = "Core 7 layers of production grade agentic system"
+readme = "README.md"
+requires-python = ">=3.13"
+
+dependencies = [
+    # --- Web framework & server ---
+    "fastapi>=0.121.0",
+    "uvicorn>=0.34.0",
+    "asgiref>=3.8.1",
+    "uvloop>=0.22.1",
+    # --- LangChain / LangGraph ecosystem ---
+    "langchain>=1.0.5",
+    "langchain-core>=1.0.4",
+    "langchain-openai>=1.0.2",
+    "langchain-community>=0.4.1",
+    "langgraph>=1.0.2",
+    "langgraph-checkpoint-postgres>=3.0.1",
+    # --- Observability & tracing ---
+    "langfuse==3.9.1",
+    "structlog>=25.2.0",
+    # --- Authentication & security ---
+    "passlib[bcrypt]>=1.7.4",
+    "bcrypt>=4.3.0",
+    "python-jose[cryptography]>=3.4.0",
+    "email-validator>=2.2.0",
+    # --- Database & persistence ---
+    "psycopg2-binary>=2.9.10",
+    "sqlmodel>=0.0.24",
+    "supabase>=2.15.0",
+    # --- Configuration & environment ---
+    "pydantic[email]>=2.11.1",
+    "pydantic-settings>=2.8.1",
+    "python-dotenv>=1.1.0",
+    # --- API utilities ---
+    "python-multipart>=0.0.20",
+    "slowapi>=0.1.9",
+    # --- Metrics & monitoring ---
+    "prometheus-client>=0.19.0",
+    "starlette-prometheus>=0.7.0",
+    # --- Search & external tools ---
+    "duckduckgo-search>=3.9.0",
+    "ddgs>=9.6.0",
+    # --- Reliability & utilities ---
+    "tenacity>=9.1.2",
+    "tqdm>=4.67.1",
+    "colorama>=0.4.6",
+    # --- Memory / agent tooling ---
+    "mem0ai>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "isort",
+    "flake8",
+    "ruff",
+    "djlint==1.36.4",
+]
+
+[dependency-groups]
+test = [
+    "httpx>=0.28.1",
+    "pytest>=8.3.5",
+]
+
+[tool.pytest.ini_options]
+markers = ["slow: marks tests as slow"]
+python_files = ["test_*.py", "*_test.py", "tests.py"]
+
+[tool.black]
+line-length = 119
+exclude = "venv|migrations"
+
+[tool.ruff]
+line-length = 119
+exclude = ["migrations", "*.ipynb", "venv"]
+
+[tool.isort]
+profile = "black"
+multi_line_output = "VERTICAL_HANGING_INDENT"
+force_grid_wrap = 2
+line_length = 119
+skip = ["migrations", "venv"]
